@@ -12,10 +12,10 @@ describe('Bubble Sort', function () {
     });
 
     it("does the right number of swaps and comparisons", function () {
-        spyOn(Array.prototype, "swap");
-        spyOn(window, "compare");
+        spyOn(Array.prototype, "swap").and.callThrough();
+        spyOn(window, "compare").and.callThrough();
         bubbleSort([3, 1, 2, 5, 4, 2]);
-        expect(swap.calls.count()).toEqual(6);
+        expect(Array.prototype.swap.calls.count()).toEqual(6);
         expect(compare.calls.count()).toEqual(14);
     });
 
