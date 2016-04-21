@@ -1,4 +1,5 @@
 function bubbleSort(arr) {
+    var swapCount = 0;
 
     // var swapcount = 0;
     // var currArr = arr.slice(0,-1);
@@ -21,13 +22,6 @@ Array.prototype.swap = function (index) {
     var temp = this[index];
     this[index] = this[index+1];
     this[index+1] = temp;
-}
-
-function swap(arr, index) {
-    index = index || 0;
-    var temp = arr[index];
-    arr[index] = arr[index+1];
-    arr[index+1] = temp;
 }
 
 function compare(a, b) {
