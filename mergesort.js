@@ -1,31 +1,32 @@
 Array.prototype.split = function () {
-    if(this.length < 2) throw new Error("Array too small");
-    var pivot = Math.floor(this.length/2);
-    return [this.slice(0,pivot), this.slice(pivot)];
+    if (this.length < 2) throw new Error("Array too small");
+    var pivot = Math.floor(this.length / 2);
+    return [this.slice(0, pivot), this.slice(pivot)];
 };
 
 Array.prototype.merge = function (arr) {
-    if(!arr.length) return this; // parameter is null
-    if(!this.length) return arr; // root array is null
+
+    if (!arr.length) return this; // parameter is null
+    if (!this.length) return arr; // root array is null
+
+    var thisIndex = 0;
+    var arrIndex = 0;
+    var a, b;
     var result = [];
-    var b;
-    b = arr.shift(); // first element of parameter
-    this.forEach(function(a,i,array){
-        if (b) {
-            if (a <= b) {
-                result.push(a);
-            } else {
-                while (a > b) {
-                    result.push(b);
-                    b = arr.shift(); // move to next element in arr
-                }
-                result.push(a); // ran out of smaller elements in arr, push a
-            }
+
+    while (thisIndex < this.length && arrIndex < arr.length) {
+        a = this[thisIndex];
+        b = arr[arrIndex];
+        if (a <= b) {
+            result.push(a);
+            thisIndex++;
+        } else {
+            result.push(b);
+            arrIndex++;
         }
-        if (!b) result = result.concat(array.slice(i+1)); // arr is null
-    });
-    if (b) result.push(b); // root array is null but b is not
-    return result.concat(arr);
+    }
+
+    return result.concat(this.slice(thisIndex)).concat(arr.slice(arrIndex));
 };
 
 function mergeSort(array) {
