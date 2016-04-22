@@ -1,9 +1,10 @@
-Array.prototype.swap = function (index) {
-    index = index || 0;
-    if (index >= this.length - 1) throw new Error("what are you an idiot?");
-    var temp = this[index];
-    this[index] = this[index + 1];
-    this[index + 1] = temp;
+Array.prototype.swap = function (i,j) {
+    i = i || 0;
+    j = j || i+1;
+    if (i >= this.length - 1 || j >= this.length || i < 0 || j < 0) throw new Error("index out of range");
+    var temp = this[i];
+    this[i] = this[j];
+    this[j] = temp;
 }
 
 function bubbleSort(arr) {
